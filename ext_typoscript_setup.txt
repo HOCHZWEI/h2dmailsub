@@ -1,0 +1,21 @@
+
+config.tx_extbase{
+    persistence{
+        classes{
+
+            TYPO3\TtAddress\Domain\Model\Address {
+                subclasses {
+                    Tx_H2dmailsub_Address = Hochzwei\H2dmailsub\Domain\Model\Address
+					
+          		}
+            }
+            Hochzwei\H2dmailsub\Domain\Model\Address {
+                mapping {
+                    tableName = tt_address
+                    recordType = Tx_H2dmailsub_Address
+                }
+            }
+            
+    	}
+    }
+}

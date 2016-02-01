@@ -1,0 +1,15 @@
+
+plugin.tx_h2dmailsub_pidmailsubscribe {
+	view {
+		# cat=plugin.tx_h2dmailsub_pidmailsubscribe/file; type=string; label=Path to template root (FE)
+		templateRootPath = EXT:h2dmailsub/Resources/Private/Templates/
+		# cat=plugin.tx_h2dmailsub_pidmailsubscribe/file; type=string; label=Path to template partials (FE)
+		partialRootPath = EXT:h2dmailsub/Resources/Private/Partials/
+		# cat=plugin.tx_h2dmailsub_pidmailsubscribe/file; type=string; label=Path to template layouts (FE)
+		layoutRootPath = EXT:h2dmailsub/Resources/Private/Layouts/
+	}
+	persistence {
+		# cat=plugin.tx_h2dmailsub_pidmailsubscribe//a; type=string; label=Default storage PID
+		storagePid =
+	}
+}

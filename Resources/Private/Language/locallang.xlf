@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2016-02-01T14:52:36Z" product-name="h2dmailsub">
+		<header/>
+		<body>
+			<trans-unit id="tx_h2dmailsub_domain_model_address">
+				<source>Address</source>
+			</trans-unit>
+			<trans-unit id="tx_h2dmailsub_domain_model_address.localgender">
+				<source>Localgender</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
