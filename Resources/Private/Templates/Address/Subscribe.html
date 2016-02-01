@@ -1,10 +1,12 @@
 <f:layout name="Default" />
 
 <f:section name="main">
+    <f:flashMessages />
    <f:form object="{address}" name="subscribe" action="safeSubscribe" arguments="{address:address}" class="subscribe-form">
        <fieldset>
            <label for="email"><f:translate key="tx_h2dmailsub_domain_model_address.email" /></label>
            <f:form.textfield id="email" property="email" value=""/>
+           <f:form.submit value="{f:translate(key:'tx_h2dmailsub_domain_model_address.submit')}" class="submit"/>
        </fieldset>
    </f:form>
 </f:section>

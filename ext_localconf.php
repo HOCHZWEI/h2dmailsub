@@ -7,10 +7,10 @@ if (!defined('TYPO3_MODE')) {
 	'Hochzwei.' . $_EXTKEY,
 	'Pidmailsubscribe',
 	array(
-		'Address' => 'subscribe, unsubscribe',
+		'Address' => 'subscribe, safeSubscribe, unsubscribe',
 	),
 	// non-cacheable actions
 	array(
-		'Address' => 'subscribe, unsubscribe',
+		'Address' => 'subscribe, safeSubscribe, unsubscribe',
 	)
 );

@@ -26,6 +26,20 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     }
 
     /**
+     * safe subscribe
+     *
+     * @param \TYPO3\TtAddress\Domain\Model\Address $address
+     * @return void
+     */
+    public function safeSubscribeAction(\TYPO3\TtAddress\Domain\Model\Address $address)
+    {
+        $this->addressRepository->add($address);
+        //$this->flashMessageContainer->add('Your new Address was created.');
+        print_r('Your new Address was created.');
+        die();
+    }
+
+    /**
      * unsubscribe
      *
      * @return void
