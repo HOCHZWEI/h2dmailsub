@@ -8,9 +8,9 @@ namespace Hochzwei\H2dmailsub\Controller;
 class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
     /**
-     * AddressRepository
+     * addressRepository
      *
-     * @var TYPO3\TtAddress\Domain\Repository
+     * @var \TYPO3\TtAddress\Domain\Repository\AddressRepository
      * @inject
      */
     protected $addressRepository = null;

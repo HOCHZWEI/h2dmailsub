@@ -9,6 +9,9 @@
 			<trans-unit id="tx_h2dmailsub_domain_model_address.localgender">
 				<source>Localgender</source>
 			</trans-unit>
+			<trans-unit id="tx_h2dmailsub_domain_model_address.email">
+				<source>E-Mail</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
