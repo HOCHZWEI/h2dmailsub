@@ -31,7 +31,7 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      * @param \TYPO3\TtAddress\Domain\Model\Address $address
      * @return void
      */
-    public function safeSubscribeAction(\TYPO3\TtAddress\Domain\Model\Address $address)
+    public function saveSubscriptionAction(\TYPO3\TtAddress\Domain\Model\Address $address)
     {
         $this->addressRepository->add($address);
         //$this->flashMessageContainer->add('Your new Address was created.');
