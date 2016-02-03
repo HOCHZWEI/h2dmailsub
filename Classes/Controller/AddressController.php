@@ -26,14 +26,25 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     }
 
     /**
-     * safe subscribe
+     * Saves a new subscription
      *
-     * @param \TYPO3\TtAddress\Domain\Model\Address $address
+     * @todo Implement validator
+     *
+     * @param \Hochzwei\H2dmailsub\Domain\Model\Address $address
      * @return void
      */
-    public function saveSubscriptionAction(\TYPO3\TtAddress\Domain\Model\Address $address)
+    public function saveSubscriptionAction(\Hochzwei\H2dmailsub\Domain\Model\Address $address)
     {
+        if ($this->settings['doubleOptIn']) {
+            $address->setHidden(true);
+        }
         $this->addressRepository->add($address);
+
+        // @todo Get UID of newly created record
+
+        // @todo Send E-Mail with confirmation link if configured (should also contain a configurable validity and the UID of record)
+
+        // @todo Show message (Subscription Saved / Subscription saved but needs to be confirmed)
     }
 
     /**

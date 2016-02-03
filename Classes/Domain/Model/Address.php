@@ -34,6 +34,13 @@ class Address extends \TYPO3\TtAddress\Domain\Model\Address
 {
 
     /**
+     * Record is hidden
+     *
+     * @var bool
+     */
+    protected $hidden;
+
+    /**
      * Gender
      *
      * @var string
@@ -59,6 +66,26 @@ class Address extends \TYPO3\TtAddress\Domain\Model\Address
     public function setLocalgender($localgender)
     {
         $this->localgender = $localgender;
+    }
+
+    /**
+     * Returns if record is hidden
+     *
+     * @return bool
+     */
+    public function getHidden()
+    {
+        return $this->hidden;
+    }
+
+    /**
+     * Sets if record should be hidden
+     *
+     * @param bool $hidden
+     */
+    public function setHidden($hidden)
+    {
+        $this->hidden = $hidden;
     }
 
 }

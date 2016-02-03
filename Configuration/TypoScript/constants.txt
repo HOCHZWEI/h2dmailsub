@@ -12,4 +12,8 @@ plugin.tx_h2dmailsub_pidmailsubscribe {
 		# cat=plugin.tx_h2dmailsub_pidmailsubscribe//a; type=string; label=Default storage PID
 		storagePid =
 	}
+	settings {
+		# cat=plugin.tx_h2dmailsub_pidmailsubscribe//a; type=boolean; label=Enable double opt in
+		doubleOptIn = 1
+	}
 }
