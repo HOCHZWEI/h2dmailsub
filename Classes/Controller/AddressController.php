@@ -34,9 +34,6 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     public function saveSubscriptionAction(\TYPO3\TtAddress\Domain\Model\Address $address)
     {
         $this->addressRepository->add($address);
-        //$this->flashMessageContainer->add('Your new Address was created.');
-        print_r('Your new Address was created.');
-        die();
     }
 
     /**
