@@ -47,6 +47,11 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         // @todo Show message (Subscription Saved / Subscription saved but needs to be confirmed)
     }
 
+    public function confirmSubscriptionAction()
+    {
+        // @todo Implement method
+    }
+
     /**
      * unsubscribe
      *

@@ -15,7 +15,7 @@
                                 <items>
                                     <numIndex index="0">
                                         <numIndex index="0">Subscribe</numIndex>
-                                        <numIndex index="1">Address->subscribe;Address->saveSubscription</numIndex>
+                                        <numIndex index="1">Address->subscribe;Address->saveSubscription;Address->confirmSubscription</numIndex>
                                     </numIndex>
                                     <numIndex index="1">
                                         <numIndex index="0">Unsubscribe</numIndex>
