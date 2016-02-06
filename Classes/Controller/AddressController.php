@@ -22,7 +22,8 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      */
     public function subscribeAction()
     {
-
+        $test = $this->addressRepository->findAll();
+        var_dump(count($test));
     }
 
     /**

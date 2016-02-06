@@ -7,6 +7,11 @@ plugin.tx_h2dmailsub_pidmailsubscribe {
 	}
 	persistence {
 		storagePid = {$plugin.tx_h2dmailsub_pidmailsubscribe.persistence.storagePid}
+		classes {
+			Hochzwei\H2dmailsub\Domain\Model\Address {
+				newRecordStoragePid = {$plugin.tx_h2dmailsub_pidmailsubscribe.persistence.storagePid}
+			}
+		}
 	}
 	settings {
 		doubleOptIn = {$plugin.tx_h2dmailsub_pidmailsubscribe.persistence.doubleOptIn}
