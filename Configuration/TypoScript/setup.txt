@@ -1,19 +1,19 @@
 
-plugin.tx_h2dmailsub_pidmailsubscribe {
+plugin.tx_h2dmailsub {
 	view {
-		templateRootPaths.0 = {$plugin.tx_h2dmailsub_pidmailsubscribe.view.templateRootPath}
-		partialRootPaths.0 = {$plugin.tx_h2dmailsub_pidmailsubscribe.view.partialRootPath}
-		layoutRootPaths.0 = {$plugin.tx_h2dmailsub_pidmailsubscribe.view.layoutRootPath}
+		templateRootPaths.0 = {$plugin.tx_h2dmailsub.view.templateRootPath}
+		partialRootPaths.0 = {$plugin.tx_h2dmailsub.view.partialRootPath}
+		layoutRootPaths.0 = {$plugin.tx_h2dmailsub.view.layoutRootPath}
 	}
 	persistence {
-		storagePid = {$plugin.tx_h2dmailsub_pidmailsubscribe.persistence.storagePid}
+		storagePid = {$plugin.tx_h2dmailsub.persistence.storagePid}
 		classes {
 			Hochzwei\H2dmailsub\Domain\Model\Address {
-				newRecordStoragePid = {$plugin.tx_h2dmailsub_pidmailsubscribe.persistence.storagePid}
+				newRecordStoragePid = {$plugin.tx_h2dmailsub.persistence.storagePid}
 			}
 		}
 	}
 	settings {
-		doubleOptIn = {$plugin.tx_h2dmailsub_pidmailsubscribe.persistence.doubleOptIn}
+		doubleOptIn = {$plugin.tx_h2dmailsub.persistence.doubleOptIn}
 	}
 }

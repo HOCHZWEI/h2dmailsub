@@ -1,19 +1,19 @@
 
-plugin.tx_h2dmailsub_pidmailsubscribe {
+plugin.tx_h2dmailsub {
 	view {
-		# cat=plugin.tx_h2dmailsub_pidmailsubscribe/file; type=string; label=Path to template root (FE)
+		# cat=plugin.tx_h2dmailsub/file; type=string; label=Path to template root (FE)
 		templateRootPath = EXT:h2dmailsub/Resources/Private/Templates/
-		# cat=plugin.tx_h2dmailsub_pidmailsubscribe/file; type=string; label=Path to template partials (FE)
+		# cat=plugin.tx_h2dmailsub/file; type=string; label=Path to template partials (FE)
 		partialRootPath = EXT:h2dmailsub/Resources/Private/Partials/
-		# cat=plugin.tx_h2dmailsub_pidmailsubscribe/file; type=string; label=Path to template layouts (FE)
+		# cat=plugin.tx_h2dmailsub/file; type=string; label=Path to template layouts (FE)
 		layoutRootPath = EXT:h2dmailsub/Resources/Private/Layouts/
 	}
 	persistence {
-		# cat=plugin.tx_h2dmailsub_pidmailsubscribe//a; type=string; label=Default storage PID
+		# cat=plugin.tx_h2dmailsub//a; type=string; label=Default storage PID
 		storagePid =
 	}
 	settings {
-		# cat=plugin.tx_h2dmailsub_pidmailsubscribe//a; type=boolean; label=Enable double opt in
+		# cat=plugin.tx_h2dmailsub//a; type=boolean; label=Enable double opt in
 		doubleOptIn = 1
 	}
 }
