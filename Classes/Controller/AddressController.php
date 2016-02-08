@@ -40,7 +40,9 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             $address->setHidden(true);
         }
         $this->addressRepository->add($address);
-
+        $persistenceManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager');
+        $persistenceManager->persistAll();
+        $this->view->assign('uid',$address->getUid());
         // @todo Get UID of newly created record
 
         // @todo Send E-Mail with confirmation link if configured (should also contain a configurable validity and the UID of record)
@@ -48,8 +50,25 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         // @todo Show message (Subscription Saved / Subscription saved but needs to be confirmed)
     }
 
-    public function confirmSubscriptionAction()
+    /**
+     * confirm a subscription
+     *
+     * @param int $uid
+     * @return void
+     */
+    public function confirmSubscriptionAction($uid)
     {
+        $querySettings = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\Typo3QuerySettings');
+        $querySettings->setRespectStoragePage(false);
+        $querySettings->setIgnoreEnableFields(true);
+        $this->addressRepository->setDefaultQuerySettings($querySettings);
+
+        /* @var $address \Hochzwei\H2dmailsub\Domain\Model\Address */
+        $address = $this->addressRepository->findOneByUid($uid);
+        $address->setHidden(false);
+        $this->addressRepository->update($address);
+        // @todo fix Bug $address->setHidden
+
         // @todo Implement method
     }
 
