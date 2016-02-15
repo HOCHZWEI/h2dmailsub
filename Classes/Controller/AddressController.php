@@ -26,6 +26,14 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     protected $emailService;
 
     /**
+     * Notification Service
+     *
+     * @var \Hochzwei\H2dmailsub\Service\NotificationService
+     * @inject
+     */
+    protected $notificationService;
+
+    /**
      * subscribe
      *
      * @return void
@@ -52,10 +60,13 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         $this->addressRepository->add($address);
         $persistenceManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager');
         $persistenceManager->persistAll();
-        $this->view->assign('uid',$address->getUid());
+        $uid = $address->getUid();
 
         // @todo Send E-Mail with confirmation link if configured (should also contain a configurable validity and the UID of record)
-        return $this->emailService->sendEmailMessage();
+        $body = $this->notificationService->getNotificationContent($uid);
+        return $this->emailService->sendEmailMessage('asc@hoch2.de', 'asc@hoch2.de', 'Test', $body);
+
+        // @todo params sender, receiver, subject
 
         // @todo Show message (Subscription Saved / Subscription saved but needs to be confirmed)
     }

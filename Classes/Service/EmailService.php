@@ -43,7 +43,7 @@ class EmailService
      *
      * @return bool TRUE/FALSE if message is sent
      */
-    public function sendEmailMessage($sender='asc@hoch2.de', $recipient='asc@hoch2.de', $subject='Test', $body='hallo email', $name = null)
+    public function sendEmailMessage($sender, $recipient, $subject, $body, $name = null)
     {
         if (GeneralUtility::validEmail($sender) && GeneralUtility::validEmail($recipient)) {
             $this->mailer->setFrom($sender, $name);
