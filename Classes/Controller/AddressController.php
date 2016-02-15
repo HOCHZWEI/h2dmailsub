@@ -18,6 +18,14 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     protected $addressRepository = null;
 
     /**
+     * Email Service
+     *
+     * @var \Hochzwei\H2dmailsub\Service\EmailService
+     * @inject
+     */
+    protected $emailService;
+
+    /**
      * subscribe
      *
      * @return void
@@ -45,9 +53,9 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         $persistenceManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager');
         $persistenceManager->persistAll();
         $this->view->assign('uid',$address->getUid());
-        // @todo Get UID of newly created record
 
         // @todo Send E-Mail with confirmation link if configured (should also contain a configurable validity and the UID of record)
+        return $this->emailService->sendEmailMessage();
 
         // @todo Show message (Subscription Saved / Subscription saved but needs to be confirmed)
     }
