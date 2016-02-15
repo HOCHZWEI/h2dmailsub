@@ -79,13 +79,12 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      */
     public function confirmSubscriptionAction($subscriptionUid)
     {
-        $querySettings = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\Typo3QuerySettings');
-        $querySettings->setRespectStoragePage(false);
-        $querySettings->setIgnoreEnableFields(true);
-        $this->addressRepository->setDefaultQuerySettings($querySettings);
+        // @todo THA: Security checks
 
         /* @var $address \Hochzwei\H2dmailsub\Domain\Model\Address */
-        $address = $this->addressRepository->findOneByUid($subscriptionUid);
+        $address = $this->addressRepository->findAddressByUid($subscriptionUid);
+
+        // @todo Evaluate if address is hidden and if not, show message that subscription is confirmed
 
         $address->setHidden(false);
         $this->addressRepository->update($address);

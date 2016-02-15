@@ -20,4 +20,17 @@ namespace Hochzwei\H2dmailsub\Domain\Repository;
 class AddressRepository extends \TYPO3\TtAddress\Domain\Repository\AddressRepository
 {
 
+    /**
+     * Returns one address (also hidden) record by the given uid
+     *
+     * @param int $uid
+     * @return object
+     */
+    public function findAddressByUid($uid)
+    {
+        $query = $this->createQuery();
+        $query->getQuerySettings()->setIgnoreEnableFields(true);
+        $query->matching($query->equals('uid', $uid));
+        return $query->execute()->getFirst();
+    }
 }
