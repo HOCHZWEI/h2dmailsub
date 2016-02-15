@@ -1,6 +1,8 @@
 <?php
 namespace Hochzwei\H2dmailsub\Controller;
 
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
+
 /**
  * AddressController
  *
@@ -10,7 +12,7 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     /**
      * addressRepository
      *
-     * @var \TYPO3\TtAddress\Domain\Repository\AddressRepository
+     * @var \Hochzwei\H2dmailsub\Domain\Repository\AddressRepository
      * @inject
      */
     protected $addressRepository = null;
@@ -65,9 +67,9 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 
         /* @var $address \Hochzwei\H2dmailsub\Domain\Model\Address */
         $address = $this->addressRepository->findOneByUid($uid);
+
         $address->setHidden(false);
         $this->addressRepository->update($address);
-        // @todo fix Bug $address->setHidden
 
         // @todo Implement method
     }

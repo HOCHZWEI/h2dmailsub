@@ -18,4 +18,9 @@ config.tx_extbase{
             
     	}
     }
+    objects{
+        TYPO3\TtAddress\Domain\Repository\AddressRepository {
+            className = Hochzwei\H2dmailsub\Domain\Repository\AddressRepository
+        }
+    }
 }
