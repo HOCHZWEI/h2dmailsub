@@ -1,5 +1,6 @@
 <?php
 namespace Hochzwei\H2dmailsub\Service;
+
 /*
  * This file is part of the TYPO3 CMS project.
  *
@@ -13,9 +14,9 @@ namespace Hochzwei\H2dmailsub\Service;
  * The TYPO3 project - inspiring people to share!
  */
 use \TYPO3\CMS\Core\Utility\GeneralUtility;
+
 /**
  * EmailService
- *
  */
 class EmailService
 {
@@ -24,14 +25,16 @@ class EmailService
      *
      * @var \TYPO3\CMS\Core\Mail\MailMessage
      */
-    protected $mailer = null;
+    protected $mail = null;
+
     /**
      * Constructor - creates new instance of mailer
      */
     public function __construct()
     {
-        $this->mailer = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Mail\\MailMessage');
+        $this->mail = GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Mail\\MailMessage');
     }
+
     /**
      * Sends an e-mail, if sender and recipient is an valid e-mail address
      *
@@ -41,17 +44,17 @@ class EmailService
      * @param string $body E-Mail body
      * @param string $name Optional sendername
      *
-     * @return bool TRUE/FALSE if message is sent
+     * @return bool true/false if message is sent
      */
     public function sendEmailMessage($sender, $recipient, $subject, $body, $name = null)
     {
         if (GeneralUtility::validEmail($sender) && GeneralUtility::validEmail($recipient)) {
-            $this->mailer->setFrom($sender, $name);
-            $this->mailer->setSubject($subject);
-            $this->mailer->setBody($body, 'text/html');
-            $this->mailer->setTo($recipient);
-            $this->mailer->send();
-            return $this->mailer->isSent();
+            $this->mail->setFrom($sender, $name);
+            $this->mail->setSubject($subject);
+            $this->mail->setBody($body, 'text/html');
+            $this->mail->setTo($recipient);
+            $this->mail->send();
+            return $this->mail->isSent();
         } else {
             return false;
         }
