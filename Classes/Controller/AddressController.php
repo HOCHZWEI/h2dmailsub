@@ -74,10 +74,10 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     /**
      * confirm a subscription
      *
-     * @param int $uid
+     * @param int $subscriptionUid
      * @return void
      */
-    public function confirmSubscriptionAction($uid)
+    public function confirmSubscriptionAction($subscriptionUid)
     {
         $querySettings = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\Typo3QuerySettings');
         $querySettings->setRespectStoragePage(false);
@@ -85,7 +85,7 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         $this->addressRepository->setDefaultQuerySettings($querySettings);
 
         /* @var $address \Hochzwei\H2dmailsub\Domain\Model\Address */
-        $address = $this->addressRepository->findOneByUid($uid);
+        $address = $this->addressRepository->findOneByUid($subscriptionUid);
 
         $address->setHidden(false);
         $this->addressRepository->update($address);
