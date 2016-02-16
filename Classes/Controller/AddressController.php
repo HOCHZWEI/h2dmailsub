@@ -101,4 +101,21 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     {
 
     }
+
+    /**
+     * Sends the unsubscribe link for the given e-mail address
+     *
+     * @param string $email
+     */
+    public function requestUnsubscribeAction($email)
+    {
+        $address = $this->addressRepository->findAddressByEmail($email);
+        if ($address) {
+            var_dump('Send link');
+        }
+
+        // @todo: show message
+    }
+
+
 }

@@ -33,4 +33,19 @@ class AddressRepository extends \TYPO3\TtAddress\Domain\Repository\AddressReposi
         $query->matching($query->equals('uid', $uid));
         return $query->execute()->getFirst();
     }
+
+    /**
+     * Returns one address (also hidden) record by the given email
+     *
+     * @param string $email
+     * @return object
+     */
+    public function findAddressByEmail($email)
+    {
+        $query = $this->createQuery();
+        $query->getQuerySettings()->setIgnoreEnableFields(true);
+        $query->matching($query->equals('email', $email));
+        return $query->execute()->getFirst();
+    }
+
 }

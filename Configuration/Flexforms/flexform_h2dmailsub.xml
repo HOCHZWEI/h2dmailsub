@@ -19,7 +19,7 @@
                                     </numIndex>
                                     <numIndex index="1">
                                         <numIndex index="0">Unsubscribe</numIndex>
-                                        <numIndex index="1">Address->unsubscribe</numIndex>
+                                        <numIndex index="1">Address->unsubscribe;Address->requestUnsubscribe;Address->removeSubscription</numIndex>
                                     </numIndex>
                                 </items>
                             </config>
