@@ -63,8 +63,8 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         $uid = $address->getUid();
 
         // @todo Send E-Mail with confirmation link if configured (should also contain a configurable validity and the UID of record)
-        $body = $this->notificationService->getNotificationContent($uid);
-        return $this->emailService->sendEmailMessage('asc@hoch2.de', 'asc@hoch2.de', 'Test', $body);
+        $body = $this->notificationService->getNotificationContent($uid, 'Notification/User/ConfirmSubscription');
+        $this->emailService->sendEmailMessage('asc@hoch2.de', 'asc@hoch2.de', 'ConfirmSubscription', $body);
 
         // @todo params sender, receiver, subject
 
@@ -111,11 +111,32 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     {
         $address = $this->addressRepository->findAddressByEmail($email);
         if ($address) {
-            var_dump('Send link');
+            $uid = $address->getUid();
+            $body = $this->notificationService->getNotificationContent($uid, 'Notification/User/Unsubscription');
+            $this->emailService->sendEmailMessage('asc@hoch2.de', 'asc@hoch2.de', 'Unsubscription', $body);
         }
 
         // @todo: show message
     }
 
+    /**
+     * remove Address
+     *
+     * @param int $subscriptionUid
+     * @return void
+     */
+    public function removeSubscriptionAction($subscriptionUid)
+    {
+        // @todo THA: Security checks
+
+        /* @var $address \Hochzwei\H2dmailsub\Domain\Model\Address */
+        $address = $this->addressRepository->findAddressByUid($subscriptionUid);
+        if($address){
+            $this->addressRepository->remove($address);
+        }
+        else{
+            //@todo: Error Messages
+        }
+    }
 
 }

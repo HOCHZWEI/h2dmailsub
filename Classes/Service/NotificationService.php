@@ -31,9 +31,10 @@ class NotificationService
      * Returns the rendered HTML for the given template
      *
      * @param int $subscriptionUid
+     * @param string $template
      * @return string
      */
-    public function getNotificationContent($subscriptionUid)
+    public function getNotificationContent($subscriptionUid,$template)
     {
         $standaloneView = $this->objectManager->get('TYPO3\\CMS\\Fluid\\View\\StandaloneView');
         $standaloneView->setFormat('html');
@@ -46,7 +47,7 @@ class NotificationService
         $standaloneView->setTemplateRootPaths(
             array(GeneralUtility::getFileAbsFileName('EXT:h2dmailsub/Resources/Private/Templates'))
         );
-        $standaloneView->setTemplate('Notification/User/ConfirmSubscription');
+        $standaloneView->setTemplate($template);
         $standaloneView->assign('subscriptionUid', $subscriptionUid);
         $emailBody = $standaloneView->render();
         return $emailBody;
