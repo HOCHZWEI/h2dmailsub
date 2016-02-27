@@ -39,13 +39,13 @@ class NotificationService
         $standaloneView = $this->objectManager->get('TYPO3\\CMS\\Fluid\\View\\StandaloneView');
         $standaloneView->setFormat('html');
         $standaloneView->setLayoutRootPaths(
-            array(GeneralUtility::getFileAbsFileName('EXT:h2dmailsub/Resources/Private/Layouts'))
+            [GeneralUtility::getFileAbsFileName('EXT:h2dmailsub/Resources/Private/Layouts')]
         );
         $standaloneView->setPartialRootPaths(
-            array(GeneralUtility::getFileAbsFileName('EXT:h2dmailsub/Resources/Private/Partials'))
+            [GeneralUtility::getFileAbsFileName('EXT:h2dmailsub/Resources/Private/Partials')]
         );
         $standaloneView->setTemplateRootPaths(
-            array(GeneralUtility::getFileAbsFileName('EXT:h2dmailsub/Resources/Private/Templates'))
+            [GeneralUtility::getFileAbsFileName('EXT:h2dmailsub/Resources/Private/Templates')]
         );
         $standaloneView->setTemplate($template);
         $standaloneView->assign('subscriptionUid', $subscriptionUid);

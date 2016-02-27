@@ -6,11 +6,11 @@ if (!defined('TYPO3_MODE')) {
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
 	'Hochzwei.' . $_EXTKEY,
 	'Pidmailsubscribe',
-	array(
+	[
 		'Address' => 'subscribe, saveSubscription, confirmSubscription, unsubscribe, requestUnsubscribe, removeSubscription',
-	),
+	],
 	// non-cacheable actions
-	array(
+	[
 		'Address' => 'subscribe, saveSubscription, confirmSubscription, unsubscribe, requestUnsubscribe, removeSubscription',
-	)
+	]
 );

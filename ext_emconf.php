@@ -10,7 +10,7 @@
  * "version" and "dependencies" must not be touched!
  ***************************************************************/
 
-$EM_CONF[$_EXTKEY] = array(
+$EM_CONF[$_EXTKEY] = [
 	'title' => 'Direct Mail Subscription',
 	'description' => 'Direct Mail Subscription based on ExtBase and Fluid',
 	'category' => 'plugin',
@@ -22,14 +22,15 @@ $EM_CONF[$_EXTKEY] = array(
 	'createDirs' => '',
 	'clearCacheOnLoad' => 0,
 	'version' => '0.1.0',
-	'constraints' => array(
-		'depends' => array(
+	'constraints' => [
+		'depends' => [
 			'typo3' => '7.6.0-7.6.99',
 			'tt_address' => '3.0.0-0.0.0',
-		),
-		'conflicts' => array(
-		),
-		'suggests' => array(
-		),
-	),
-);
+			'php' => '5.5.0-7.0.99',
+		],
+		'conflicts' => [
+		],
+		'suggests' => [
+		],
+	],
+];
