@@ -89,6 +89,8 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         $address->setHidden(false);
         $this->addressRepository->update($address);
 
+        // @todo send email to recipient that subscription is confirmed and active
+
         // @todo Implement method
     }
 
@@ -112,7 +114,7 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         $address = $this->addressRepository->findAddressByEmail($email);
         if ($address) {
             $uid = $address->getUid();
-            $body = $this->notificationService->getNotificationContent($uid, 'Notification/User/Unsubscription');
+            $body = $this->notificationService->getNotificationContent($uid, 'Notification/User/RequestUnsubscribe');
             $this->emailService->sendEmailMessage('asc@hoch2.de', 'asc@hoch2.de', 'Unsubscription', $body);
         }
 
