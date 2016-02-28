@@ -1,6 +1,7 @@
 <?php
 namespace Hochzwei\H2dmailsub\Controller;
 
+use Hochzwei\H2dmailsub\Utility\MessageType;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 /**
@@ -18,14 +19,6 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     protected $addressRepository = null;
 
     /**
-     * Email Service
-     *
-     * @var \Hochzwei\H2dmailsub\Service\EmailService
-     * @inject
-     */
-    protected $emailService;
-
-    /**
      * Notification Service
      *
      * @var \Hochzwei\H2dmailsub\Service\NotificationService
@@ -40,8 +33,7 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      */
     public function subscribeAction()
     {
-        $test = $this->addressRepository->findAll();
-        var_dump(count($test));
+
     }
 
     /**
@@ -57,16 +49,20 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         if ($this->settings['doubleOptIn']) {
             $address->setHidden(true);
         }
+
+        // @todo Only add, if address is not already subscribed
+
         $this->addressRepository->add($address);
         $persistenceManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager');
         $persistenceManager->persistAll();
         $uid = $address->getUid();
 
         // @todo Send E-Mail with confirmation link if configured (should also contain a configurable validity and the UID of record)
-        $body = $this->notificationService->getNotificationContent($uid, 'Notification/User/ConfirmSubscription');
-        $this->emailService->sendEmailMessage('asc@hoch2.de', 'asc@hoch2.de', 'ConfirmSubscription', $body);
-
-        // @todo params sender, receiver, subject
+        if ($address->getHidden()) {
+            $this->notificationService->sendNotification($address, MessageType::SUBSCRIPTION_CONFIRM);
+        } else {
+            $this->redirect('confirmSubscription', null, null, ['subscriptionUid' => $uid]);
+        }
 
         // @todo Show message (Subscription Saved / Subscription saved but needs to be confirmed)
     }
@@ -79,19 +75,30 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      */
     public function confirmSubscriptionAction($subscriptionUid)
     {
+        $titleKey = 'confirm.title.confirmed';
+        $messageKey = 'confirm.message.confirmed';
+
         // @todo THA: Security checks
+
 
         /* @var $address \Hochzwei\H2dmailsub\Domain\Model\Address */
         $address = $this->addressRepository->findAddressByUid($subscriptionUid);
 
-        // @todo Evaluate if address is hidden and if not, show message that subscription is confirmed
+        if ($address->getHidden()) {
+            $address->setHidden(false);
+            $this->addressRepository->update($address);
 
-        $address->setHidden(false);
-        $this->addressRepository->update($address);
+            // @todo send email to recipient that subscription is confirmed and active
+            $this->notificationService->sendNotification($address, MessageType::SUBSCRIPTION_CONFIRMED);
+        } else {
+            $titleKey = 'confirm.title.already_confirmed';
+            $messageKey = 'confirm.message.already_confirmed';
+        }
 
-        // @todo send email to recipient that subscription is confirmed and active
-
-        // @todo Implement method
+        $this->view->assignMultiple([
+            'titleKey' => $titleKey,
+            'messageKey' => $messageKey
+        ]);
     }
 
     /**
