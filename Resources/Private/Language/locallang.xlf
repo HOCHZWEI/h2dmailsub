@@ -12,6 +12,24 @@
 			<trans-unit id="tx_h2dmailsub_domain_model_address.email">
 				<source>E-Mail</source>
 			</trans-unit>
+			<trans-unit id="tx_h2dmailsub_domain_model_address.firstname">
+				<source>Firstname</source>
+			</trans-unit>
+			<trans-unit id="tx_h2dmailsub_domain_model_address.lastname">
+				<source>Lastname</source>
+			</trans-unit>
+			<trans-unit id="tx_h2dmailsub_domain_model_address.gender">
+				<source>Gender</source>
+			</trans-unit>
+			<trans-unit id="tx_h2dmailsub_domain_model_address.gender.female">
+				<source>Female</source>
+			</trans-unit>
+			<trans-unit id="tx_h2dmailsub_domain_model_address.gender.male">
+				<source>Male</source>
+			</trans-unit>
+			<trans-unit id="tx_h2dmailsub_domain_model_address.gender.none">
+				<source>None</source>
+			</trans-unit>
 			<trans-unit id="tx_h2dmailsub_domain_model_address.submit">
 				<source>Send</source>
 			</trans-unit>

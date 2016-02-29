@@ -9,6 +9,15 @@
 			<trans-unit id="tx_h2dmailsub_domain_model_address.localgender">
 				<source>Localgender</source>
 			</trans-unit>
+			<trans-unit id="tx_h2dmailsub_domain_model_address.localgender.female">
+				<source>Female</source>
+			</trans-unit>
+			<trans-unit id="tx_h2dmailsub_domain_model_address.localgender.male">
+				<source>Male</source>
+			</trans-unit>
+			<trans-unit id="tx_h2dmailsub_domain_model_address.localgender.none">
+				<source>None</source>
+			</trans-unit>
 			<trans-unit id="tt_address.tx_extbase_type.Tx_H2dmailsub_Address">
 				<source>Direct Mail Subscription Address</source>
 			</trans-unit>

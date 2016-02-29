@@ -4,8 +4,24 @@
     <f:flashMessages />
    <f:form object="{address}" name="address" action="saveSubscription" class="subscribe-form">
        <fieldset>
-           <label for="email"><f:translate key="tx_h2dmailsub_domain_model_address.email" /></label>
-           <f:form.textfield id="email" property="email" value=""/>
+           <div class="row">
+               <label for="firstname"><f:translate key="tx_h2dmailsub_domain_model_address.firstname" /></label>
+               <f:form.textfield id="firstname" property="firstName" value=""/>
+           </div>
+           <div class="row">
+               <label for="lastname"><f:translate key="tx_h2dmailsub_domain_model_address.lastname" /></label>
+               <f:form.textfield id="lastname" property="lastName" value=""/>
+           </div>
+           <div class="row">
+               <label for="gender"><f:translate key="tx_h2dmailsub_domain_model_address.gender" /></label>
+               <f:form.radio id="genderfemale" property="localgender" value="f"/><f:translate key="tx_h2dmailsub_domain_model_address.gender.female" />
+               <f:form.radio id="gendermale" property="localgender" value="m"/><f:translate key="tx_h2dmailsub_domain_model_address.gender.male" />
+               <f:form.radio id="gendernone" property="localgender" value="n"/><f:translate key="tx_h2dmailsub_domain_model_address.gender.none" />
+           </div>
+            <div class="row">
+                <label for="email"><f:translate key="tx_h2dmailsub_domain_model_address.email" /></label>
+                <f:form.textfield id="email" property="email" value=""/>
+            </div>
            <f:form.submit value="{f:translate(key:'tx_h2dmailsub_domain_model_address.submit')}" class="submit"/>
        </fieldset>
    </f:form>
