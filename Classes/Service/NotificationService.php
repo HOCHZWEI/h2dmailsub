@@ -40,12 +40,14 @@ class NotificationService
     protected $emailService;
 
     /**
+     * @param array $settings
      * @param Address $address
      * @param int $messageType
      */
-    public function sendNotification($address, $messageType)
+    public function sendNotification($address, $messageType, $settings)
     {
-        $sender = 'asc@hoch2.de'; // @todo fetch this from TS / Flexform
+        $sender = $settings['notification']['senderEmail'];
+        $senderName = $settings['notification']['senderName'];
 
         switch ($messageType) {
             case MessageType::SUBSCRIPTION_CONFIRM:
@@ -63,7 +65,7 @@ class NotificationService
 
         // Send e-mail to recipient
         $body = $this->getNotificationContent($address, $template);
-        $this->emailService->sendEmailMessage($sender, $address->getEmail(), $subject, $body);
+        $this->emailService->sendEmailMessage($sender, $address->getEmail(), $subject, $body, $senderName);
     }
     
     /**

@@ -27,6 +27,14 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     protected $notificationService;
 
     /**
+     * MessageType
+     *
+     * @var \Hochzwei\H2dmailsub\Utility\MessageType
+     * @inject
+     */
+    protected $MessageType;
+
+    /**
      * subscribe
      *
      * @return void
@@ -56,7 +64,7 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 
         // @todo Send E-Mail with confirmation link if configured (should also contain a configurable validity and the UID of record)
         if ($this->settings['doubleOptIn']) {
-            $this->notificationService->sendNotification($address, MessageType::SUBSCRIPTION_CONFIRM);
+            $this->notificationService->sendNotification($address, MessageType::SUBSCRIPTION_CONFIRM, $this->settings);
         } else {
             $this->redirect('confirmSubscription', null, null, ['subscriptionUid' => $uid]);
         }

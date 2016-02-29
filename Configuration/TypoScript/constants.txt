@@ -15,5 +15,16 @@ plugin.tx_h2dmailsub {
 	settings {
 		# cat=plugin.tx_h2dmailsub//a; type=boolean; label=Enable double opt in
 		doubleOptIn = 1
+
+		notification {
+			# cat=plugin.tx_h2dmailsub//a; type=string; label=E-mail address for e-mails sent to user
+			senderEmail =
+			# cat=plugin.tx_h2dmailsub//a; type=string; label=Sender name for e-mails sent to user
+			senderName =
+			# cat=plugin.tx_h2dmailsub//a; type=string; label=Signature shown in e-mails sent to user
+			senderSignature =
+			# cat=plugin.tx_h2dmailsub//a; type=string; label=Admin E-mail address
+			adminEmail =
+		}
 	}
 }
