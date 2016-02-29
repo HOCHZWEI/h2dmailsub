@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2016-02-01T14:52:36Z" product-name="h2dmailsub">
+		<header/>
+		<body>
+			<trans-unit id="flexform.notification.senderEmail">
+				<source>Sender Email</source>
+			</trans-unit>
+			<trans-unit id="flexform.notification.senderName">
+				<source>Sender Name</source>
+			</trans-unit>
+			<trans-unit id="flexform.view">
+				<source>Select View</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
