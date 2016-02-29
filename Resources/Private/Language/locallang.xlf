@@ -33,6 +33,19 @@
 			<trans-unit id="tx_h2dmailsub_domain_model_address.submit">
 				<source>Send</source>
 			</trans-unit>
+
+			<trans-unit id="confirmSubscription">
+				<source>Your Subscription to the Newsletter was successful.</source>
+			</trans-unit>
+			<trans-unit id="saveSubscription">
+				<source>A link was sent to your given email address.Please click the link to subscribe your address.</source>
+			</trans-unit>
+			<trans-unit id="removeSubscription">
+				<source>Your Address has been deleted!</source>
+			</trans-unit>
+			<trans-unit id="requestUnsubscribe">
+				<source>A link has been sent if address is known. Please click the link to unsubscribe your address.</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
