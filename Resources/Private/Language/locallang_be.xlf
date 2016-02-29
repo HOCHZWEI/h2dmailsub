@@ -12,6 +12,13 @@
 			<trans-unit id="flexform.view">
 				<source>Select View</source>
 			</trans-unit>
+
+			<trans-unit id="constants.notification">
+				<source>Notification</source>
+			</trans-unit>
+			<trans-unit id="constants.notification.subject">
+				<source>Notification Subjects</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

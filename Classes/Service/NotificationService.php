@@ -51,12 +51,16 @@ class NotificationService
 
         switch ($messageType) {
             case MessageType::SUBSCRIPTION_CONFIRM:
-                $subject = 'Please confirm the subscription';
+                $subject = $settings['notification']['subject']['confirm'];
                 $template = 'Notification/User/SubscriptionConfirm';
                 break;
             case MessageType::SUBSCRIPTION_CONFIRMED:
-                $subject = 'Subscription confirmed';
+                $subject = $settings['notification']['subject']['confirmed'];
                 $template = 'Notification/User/SubscriptionConfirmed';
+                break;
+            case MessageType::SUBSCRIPTION_UNSUBSCRIBE:
+                $subject = $settings['notification']['subject']['unsubscribe'];
+                $template = 'Notification/User/RequestUnsubscribe';
                 break;
             default:
                 $subject = '';

@@ -16,15 +16,26 @@ plugin.tx_h2dmailsub {
 		# cat=plugin.tx_h2dmailsub//a; type=boolean; label=Enable double opt in
 		doubleOptIn = 1
 
+		# customsubcategory=notification=LLL:EXT:h2dmailsub/Resources/Private/Language/locallang_be.xlf:constants.notification
 		notification {
-			# cat=plugin.tx_h2dmailsub//a; type=string; label=E-mail address for e-mails sent to user
+			# cat=plugin.tx_h2dmailsub/notification; type=string; label=E-mail address for e-mails sent to user
 			senderEmail =
-			# cat=plugin.tx_h2dmailsub//a; type=string; label=Sender name for e-mails sent to user
+			# cat=plugin.tx_h2dmailsub/notification; type=string; label=Sender name for e-mails sent to user
 			senderName =
-			# cat=plugin.tx_h2dmailsub//a; type=string; label=Signature shown in e-mails sent to user
+			# cat=plugin.tx_h2dmailsub/notification; type=string; label=Signature shown in e-mails sent to user
 			senderSignature =
-			# cat=plugin.tx_h2dmailsub//a; type=string; label=Admin E-mail address
+			# cat=plugin.tx_h2dmailsub/notification; type=string; label=Admin E-mail address
 			adminEmail =
+
+			# customsubcategory=subject=LLL:EXT:h2dmailsub/Resources/Private/Language/locallang_be.xlf:constants.notification.subject
+			subject {
+				# cat=plugin.tx_h2dmailsub/subject; type=string; label=E-mail Subject to confirm the Subscription
+				confirm =
+				# cat=plugin.tx_h2dmailsub/subject; type=string; label=E-mail Subject Subscription confirmed
+				confirmed =
+				# cat=plugin.tx_h2dmailsub/subject; type=string; label=E-mail Subject to unsubscribe
+				unsubscribe =
+			}
 		}
 	}
 }

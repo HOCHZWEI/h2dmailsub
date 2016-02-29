@@ -21,6 +21,12 @@ plugin.tx_h2dmailsub {
 			senderName = {$plugin.tx_h2dmailsub.settings.notification.senderName}
 			senderSignature = {$plugin.tx_h2dmailsub.settings.notification.senderSignature}
 			adminEmail = {$plugin.tx_h2dmailsub.settings.notification.adminEmail}
+
+			subject{
+				confirm = {$plugin.tx_h2dmailsub.settings.notification.subject.confirm}
+				confirmed = {$plugin.tx_h2dmailsub.settings.notification.subject.confirmed}
+				unsubscribe = {$plugin.tx_h2dmailsub.settings.notification.subject.unsubscribe}
+			}
 		}
 	}
 }
