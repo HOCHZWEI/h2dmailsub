@@ -1,2 +1,4 @@
-<p>hello Subscriber</p>
-<f:uri.action action="removeSubscription" arguments="{subscriptionUid: subscriptionUid}" absolute="TRUE" controller="Address" extensionName="h2dmailsub" pluginName="Pidmailsubscribe">confirm</f:uri.action>
+<p>Dear {address.firstName} {address.lastName}</p>
+<p>Click here to DELETE (!) your subscription:
+<f:uri.action action="removeSubscription" arguments="{subscriptionUid: subscriptionUid}" absolute="TRUE" controller="Address" extensionName="h2dmailsub" pluginName="Pidmailsubscribe">delete</f:uri.action>
+</p>
