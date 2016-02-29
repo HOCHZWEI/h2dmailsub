@@ -22,5 +22,4 @@ class MessageType
     const SUBSCRIPTION_CONFIRM = 0;
     const SUBSCRIPTION_CONFIRMED = 1;
     const SUBSCRIPTION_UNSUBSCRIBE = 2;
-    const SUBSCRIPTION_UNSUBSCRIBED = 3;
 }
