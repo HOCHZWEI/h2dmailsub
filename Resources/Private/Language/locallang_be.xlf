@@ -9,6 +9,15 @@
 			<trans-unit id="flexform.notification.senderName">
 				<source>Sender Name</source>
 			</trans-unit>
+			<trans-unit id="flexform.notification.subject.confirm">
+				<source>Confirm Subject</source>
+			</trans-unit>
+			<trans-unit id="flexform.notification.subject.confirmed">
+				<source>Confirmed Subject</source>
+			</trans-unit>
+			<trans-unit id="flexform.notification.subject.unsubscribe">
+				<source>Unsubscribe Subject</source>
+			</trans-unit>
 			<trans-unit id="flexform.view">
 				<source>Select View</source>
 			</trans-unit>

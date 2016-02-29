@@ -45,6 +45,48 @@
                             </config>
                         </TCEforms>
                     </settings.notification.senderName>
+                    <settings.notification.subject.confirm>
+                        <TCEforms>
+                            <label>LLL:EXT:h2dmailsub/Resources/Private/Language/locallang_be.xlf:flexform.notification.subject.confirm</label>
+                            <displayCond>
+                                <AND>
+                                    <numIndex>FIELD:switchableControllerActions:=:Address->subscribe;Address->saveSubscription;Address->confirmSubscription</numIndex>
+                                </AND>
+                            </displayCond>
+                            <config>
+                                <type>input</type>
+                                <size>30</size>
+                            </config>
+                        </TCEforms>
+                    </settings.notification.subject.confirm>
+                    <settings.notification.subject.confirmed>
+                        <TCEforms>
+                            <label>LLL:EXT:h2dmailsub/Resources/Private/Language/locallang_be.xlf:flexform.notification.subject.confirmed</label>
+                            <displayCond>
+                                <AND>
+                                    <numIndex>FIELD:switchableControllerActions:=:Address->subscribe;Address->saveSubscription;Address->confirmSubscription</numIndex>
+                                </AND>
+                            </displayCond>
+                            <config>
+                                <type>input</type>
+                                <size>30</size>
+                            </config>
+                        </TCEforms>
+                    </settings.notification.subject.confirmed>
+                    <settings.notification.subject.unsubscribe>
+                        <TCEforms>
+                            <label>LLL:EXT:h2dmailsub/Resources/Private/Language/locallang_be.xlf:flexform.notification.subject.unsubscribe</label>
+                            <displayCond>
+                                <AND>
+                                    <numIndex>FIELD:switchableControllerActions:=:Address->unsubscribe;Address->requestUnsubscribe;Address->removeSubscription</numIndex>
+                                </AND>
+                            </displayCond>
+                            <config>
+                                <type>input</type>
+                                <size>30</size>
+                            </config>
+                        </TCEforms>
+                    </settings.notification.subject.unsubscribe>
                 </el>
             </ROOT>
         </sDEF>
