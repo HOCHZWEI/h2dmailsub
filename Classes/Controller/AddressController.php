@@ -46,19 +46,16 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      */
     public function saveSubscriptionAction(\Hochzwei\H2dmailsub\Domain\Model\Address $address)
     {
-        if ($this->settings['doubleOptIn']) {
-            $address->setHidden(true);
-        }
-
         // @todo Only add, if address is not already subscribed
 
+        $address->setHidden(true);
         $this->addressRepository->add($address);
         $persistenceManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager');
         $persistenceManager->persistAll();
         $uid = $address->getUid();
 
         // @todo Send E-Mail with confirmation link if configured (should also contain a configurable validity and the UID of record)
-        if ($address->getHidden()) {
+        if ($this->settings['doubleOptIn']) {
             $this->notificationService->sendNotification($address, MessageType::SUBSCRIPTION_CONFIRM);
         } else {
             $this->redirect('confirmSubscription', null, null, ['subscriptionUid' => $uid]);
