@@ -94,7 +94,7 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             $this->addressRepository->update($address);
 
             // @todo send email to recipient that subscription is confirmed and active
-            $this->notificationService->sendNotification($address, MessageType::SUBSCRIPTION_CONFIRMED);
+            $this->notificationService->sendNotification($address, MessageType::SUBSCRIPTION_CONFIRMED, $this->settings);
         } else {
             $titleKey = 'confirm.title.already_confirmed';
             $messageKey = 'confirm.message.already_confirmed';
@@ -125,9 +125,7 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     {
         $address = $this->addressRepository->findAddressByEmail($email);
         if ($address) {
-            $uid = $address->getUid();
-            $body = $this->notificationService->getNotificationContent($uid, 'Notification/User/RequestUnsubscribe');
-            $this->emailService->sendEmailMessage('asc@hoch2.de', 'asc@hoch2.de', 'Unsubscription', $body);
+            $this->notificationService->sendNotification($address, MessageType::SUBSCRIPTION_UNSUBSCRIBE, $this->settings);
         }
 
         // @todo: show message
@@ -145,10 +143,9 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 
         /* @var $address \Hochzwei\H2dmailsub\Domain\Model\Address */
         $address = $this->addressRepository->findAddressByUid($subscriptionUid);
-        if($address){
+        if ($address) {
             $this->addressRepository->remove($address);
-        }
-        else{
+        } else {
             //@todo: Error Messages
         }
     }
