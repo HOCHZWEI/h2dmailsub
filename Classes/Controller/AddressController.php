@@ -54,22 +54,25 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      */
     public function saveSubscriptionAction(\Hochzwei\H2dmailsub\Domain\Model\Address $address)
     {
-        // @todo Only add, if address is not already subscribed
-
-        $address->setHidden(true);
-        $this->addressRepository->add($address);
-        $persistenceManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager');
-        $persistenceManager->persistAll();
-        $uid = $address->getUid();
-
-        // @todo Send E-Mail with confirmation link if configured (should also contain a configurable validity and the UID of record)
-        if ($this->settings['doubleOptIn']) {
-            $this->notificationService->sendNotification($address, MessageType::SUBSCRIPTION_CONFIRM, $this->settings);
+        $email = $this->addressRepository->findAddressByEmail($address->getEmail());
+        if ($email) {
+            $knownEmail = true;
         } else {
-            $this->redirect('confirmSubscription', null, null, ['subscriptionUid' => $uid]);
-        }
+            $knownEmail = false;
+            $address->setHidden(true);
+            $this->addressRepository->add($address);
+            $persistenceManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager');
+            $persistenceManager->persistAll();
+            $uid = $address->getUid();
 
-        // @todo Show message (Subscription Saved / Subscription saved but needs to be confirmed)
+            // @todo Send E-Mail with confirmation link if configured (should also contain a configurable validity and the UID of record)
+            if ($this->settings['doubleOptIn']) {
+                $this->notificationService->sendNotification($address, MessageType::SUBSCRIPTION_CONFIRM, $this->settings);
+            } else {
+                $this->redirect('confirmSubscription', null, null, ['subscriptionUid' => $uid]);
+            }
+        }
+        $this->view->assign('knownEmail', $knownEmail);
     }
 
     /**
@@ -94,8 +97,10 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             $this->addressRepository->update($address);
 
             // @todo send email to recipient that subscription is confirmed and active
-            $this->notificationService->sendNotification($address, MessageType::SUBSCRIPTION_CONFIRMED, $this->settings);
-            $this->notificationService->sendAdminNotification($address, MessageType::SUBSCRIPTION_CONFIRMED, $this->settings);
+            $this->notificationService->sendNotification($address, MessageType::SUBSCRIPTION_CONFIRMED,
+                $this->settings);
+            $this->notificationService->sendAdminNotification($address, MessageType::SUBSCRIPTION_CONFIRMED,
+                $this->settings);
         } else {
             $titleKey = 'confirm.title.already_confirmed';
             $messageKey = 'confirm.message.already_confirmed';
@@ -126,7 +131,8 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     {
         $address = $this->addressRepository->findAddressByEmail($email);
         if ($address) {
-            $this->notificationService->sendNotification($address, MessageType::SUBSCRIPTION_UNSUBSCRIBE, $this->settings);
+            $this->notificationService->sendNotification($address, MessageType::SUBSCRIPTION_UNSUBSCRIBE,
+                $this->settings);
         }
 
         // @todo: show message
@@ -146,7 +152,8 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         $address = $this->addressRepository->findAddressByUid($subscriptionUid);
         if ($address) {
             $this->addressRepository->remove($address);
-            $this->notificationService->sendAdminNotification($address, MessageType::SUBSCRIPTION_UNSUBSCRIBE, $this->settings);
+            $this->notificationService->sendAdminNotification($address, MessageType::SUBSCRIPTION_UNSUBSCRIBE,
+                $this->settings);
         } else {
             //@todo: Error Messages
         }
