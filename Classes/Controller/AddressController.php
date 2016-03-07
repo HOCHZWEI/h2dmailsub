@@ -96,19 +96,20 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             $address->setHidden(false);
             $this->addressRepository->update($address);
 
-            // @todo send email to recipient that subscription is confirmed and active
-            $this->notificationService->sendNotification($address, MessageType::SUBSCRIPTION_CONFIRMED,
-                $this->settings);
-            $this->notificationService->sendAdminNotification($address, MessageType::SUBSCRIPTION_CONFIRMED,
-                $this->settings);
+            $this->notificationService->sendNotification($address, MessageType::SUBSCRIPTION_CONFIRMED, $this->settings);
+            $this->notificationService->sendAdminNotification($address, MessageType::SUBSCRIPTION_CONFIRMED, $this->settings);
+
+            $already_confirmed = false;
         } else {
             $titleKey = 'confirm.title.already_confirmed';
             $messageKey = 'confirm.message.already_confirmed';
+            $already_confirmed = true;
         }
 
         $this->view->assignMultiple([
             'titleKey' => $titleKey,
-            'messageKey' => $messageKey
+            'messageKey' => $messageKey,
+            'already_confirmed' => $already_confirmed
         ]);
     }
 

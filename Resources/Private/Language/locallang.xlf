@@ -37,6 +37,9 @@
 			<trans-unit id="confirmSubscription">
 				<source>Your Subscription to the Newsletter was successful.</source>
 			</trans-unit>
+			<trans-unit id="confirmSubscription.failed">
+				<source>Your are already confirmed!</source>
+			</trans-unit>
 			<trans-unit id="saveSubscription">
 				<source>A link was sent to your given email address.Please click the link to subscribe your address.</source>
 			</trans-unit>
