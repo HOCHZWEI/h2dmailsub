@@ -36,6 +36,14 @@ plugin.tx_h2dmailsub {
 				# cat=plugin.tx_h2dmailsub/subject; type=string; label=E-mail Subject to unsubscribe
 				unsubscribe =
 			}
+
+			# customsubcategory=adminsubject=LLL:EXT:h2dmailsub/Resources/Private/Language/locallang_be.xlf:constants.notification.adminsubject
+			adminSubject{
+				# cat=plugin.tx_h2dmailsub/subject; type=string; label=E-mail Subject Subscription confirmed
+				confirmed =
+				# cat=plugin.tx_h2dmailsub/subject; type=string; label=E-mail Subject to unsubscribe
+				unsubscribe =
+			}
 		}
 	}
 }

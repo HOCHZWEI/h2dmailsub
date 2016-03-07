@@ -27,6 +27,10 @@ plugin.tx_h2dmailsub {
 				confirmed = {$plugin.tx_h2dmailsub.settings.notification.subject.confirmed}
 				unsubscribe = {$plugin.tx_h2dmailsub.settings.notification.subject.unsubscribe}
 			}
+			adminSubject{
+				confirmed = {$plugin.tx_h2dmailsub.settings.notification.adminSubject.confirmed}
+				unsubscribe = {$plugin.tx_h2dmailsub.settings.notification.adminSubject.unsubscribe}
+			}
 		}
 	}
 }

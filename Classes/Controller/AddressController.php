@@ -95,6 +95,7 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 
             // @todo send email to recipient that subscription is confirmed and active
             $this->notificationService->sendNotification($address, MessageType::SUBSCRIPTION_CONFIRMED, $this->settings);
+            $this->notificationService->sendAdminNotification($address, MessageType::SUBSCRIPTION_CONFIRMED, $this->settings);
         } else {
             $titleKey = 'confirm.title.already_confirmed';
             $messageKey = 'confirm.message.already_confirmed';
@@ -145,6 +146,7 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         $address = $this->addressRepository->findAddressByUid($subscriptionUid);
         if ($address) {
             $this->addressRepository->remove($address);
+            $this->notificationService->sendAdminNotification($address, MessageType::SUBSCRIPTION_UNSUBSCRIBE, $this->settings);
         } else {
             //@todo: Error Messages
         }

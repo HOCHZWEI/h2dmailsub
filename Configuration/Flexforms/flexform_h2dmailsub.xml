@@ -9,6 +9,7 @@
                 <el>
                     <switchableControllerActions>
                         <TCEforms>
+                            <onChange>reload</onChange>
                             <label>LLL:EXT:h2dmailsub/Resources/Private/Language/locallang_be.xlf:flexform.view</label>
                             <config>
                                 <type>select</type>
@@ -87,6 +88,34 @@
                             </config>
                         </TCEforms>
                     </settings.notification.subject.unsubscribe>
+                    <settings.notification.adminSubject.confirmed>
+                        <TCEforms>
+                            <label>LLL:EXT:h2dmailsub/Resources/Private/Language/locallang_be.xlf:flexform.notification.adminsubject.confirmed</label>
+                            <displayCond>
+                                <AND>
+                                    <numIndex>FIELD:switchableControllerActions:=:Address->subscribe;Address->saveSubscription;Address->confirmSubscription</numIndex>
+                                </AND>
+                            </displayCond>
+                            <config>
+                                <type>input</type>
+                                <size>30</size>
+                            </config>
+                        </TCEforms>
+                    </settings.notification.adminSubject.confirmed>
+                    <settings.notification.adminSubject.unsubscribe>
+                        <TCEforms>
+                            <label>LLL:EXT:h2dmailsub/Resources/Private/Language/locallang_be.xlf:flexform.notification.adminsubject.unsubscribe</label>
+                            <displayCond>
+                                <AND>
+                                    <numIndex>FIELD:switchableControllerActions:=:Address->unsubscribe;Address->requestUnsubscribe;Address->removeSubscription</numIndex>
+                                </AND>
+                            </displayCond>
+                            <config>
+                                <type>input</type>
+                                <size>30</size>
+                            </config>
+                        </TCEforms>
+                    </settings.notification.adminSubject.unsubscribe>
                 </el>
             </ROOT>
         </sDEF>

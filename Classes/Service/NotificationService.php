@@ -83,10 +83,41 @@ class NotificationService
     }
 
     /**
+     * @param array $settings
+     * @param Address $address
+     * @param int $messageType
+     */
+    public function sendAdminNotification($address, $messageType, $settings)
+    {
+        $sender = $settings['notification']['senderEmail'];
+        $senderName = $settings['notification']['senderName'];
+        $adminemail = $settings['notification']['adminEmail'];
+
+        switch ($messageType) {
+            case MessageType::SUBSCRIPTION_CONFIRMED:
+                $subject = $settings['notification']['adminSubject']['confirmed'];
+                $template = 'Notification/Admin/NewSubscription';
+                break;
+            case MessageType::SUBSCRIPTION_UNSUBSCRIBE:
+                $subject = $settings['notification']['adminSubject']['unsubscribe'];
+                $template = 'Notification/Admin/DeletedSubscription';
+                break;
+            default:
+                $subject = '';
+                $template = '';
+        }
+
+        // Send e-mail to admin
+        $body = $this->getNotificationContent($address, $template, $settings);
+        $this->emailService->sendEmailMessage($sender, $adminemail, $subject, $body, $senderName);
+    }
+
+    /**
      * Returns the rendered HTML for the given template
      *
      * @param Address $address
      * @param string $template
+     * @param array $settings
      * @return string
      */
     public function getNotificationContent($address, $template, $settings)

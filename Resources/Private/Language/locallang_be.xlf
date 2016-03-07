@@ -18,6 +18,12 @@
 			<trans-unit id="flexform.notification.subject.unsubscribe">
 				<source>Unsubscribe Subject</source>
 			</trans-unit>
+			<trans-unit id="flexform.notification.adminsubject.confirmed">
+				<source>Confirmed Subject to Admin</source>
+			</trans-unit>
+			<trans-unit id="flexform.notification.adminsubject.unsubscribe">
+				<source>Unsubscribe Subject to Admin</source>
+			</trans-unit>
 			<trans-unit id="flexform.view">
 				<source>Select View</source>
 			</trans-unit>
@@ -27,6 +33,9 @@
 			</trans-unit>
 			<trans-unit id="constants.notification.subject">
 				<source>Notification Subjects</source>
+			</trans-unit>
+			<trans-unit id="constants.notification.adminsubject">
+				<source>Notification Admin Subjects</source>
 			</trans-unit>
 		</body>
 	</file>
