@@ -49,8 +49,14 @@
 			<trans-unit id="removeSubscription">
 				<source>Your Address has been deleted!</source>
 			</trans-unit>
+			<trans-unit id="removeSubscription.failed">
+				<source>You are already deleted!</source>
+			</trans-unit>
 			<trans-unit id="requestUnsubscribe">
 				<source>A link has been sent if address is known. Please click the link to unsubscribe your address.</source>
+			</trans-unit>
+			<trans-unit id="requestUnsubscribe.failed">
+				<source>Your Email address is not subscribed!</source>
 			</trans-unit>
 		</body>
 	</file>

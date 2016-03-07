@@ -132,11 +132,12 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     {
         $address = $this->addressRepository->findAddressByEmail($email);
         if ($address) {
-            $this->notificationService->sendNotification($address, MessageType::SUBSCRIPTION_UNSUBSCRIBE,
-                $this->settings);
+            $this->notificationService->sendNotification($address, MessageType::SUBSCRIPTION_UNSUBSCRIBE, $this->settings);
+            $unknownAddress = false;
+        } else {
+            $unknownAddress = true;
         }
-
-        // @todo: show message
+        $this->view->assign('unknownAddress', $unknownAddress);
     }
 
     /**
@@ -153,11 +154,12 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         $address = $this->addressRepository->findAddressByUid($subscriptionUid);
         if ($address) {
             $this->addressRepository->remove($address);
-            $this->notificationService->sendAdminNotification($address, MessageType::SUBSCRIPTION_UNSUBSCRIBE,
-                $this->settings);
+            $this->notificationService->sendAdminNotification($address, MessageType::SUBSCRIPTION_UNSUBSCRIBE, $this->settings);
+            $deletedAddress = false;
         } else {
-            //@todo: Error Messages
+            $deletedAddress = true;
         }
+        $this->view->assign('deletedAddress', $deletedAddress);
     }
 
 }

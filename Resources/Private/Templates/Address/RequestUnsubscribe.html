@@ -1,7 +1,12 @@
 <f:layout name="Default" />
 
 <f:section name="main">
-
-	<p><f:translate key="requestUnsubscribe"/></p>
-
+	<f:if condition="{unknownAddress}">
+		<f:then>
+			<p><f:translate key="requestUnsubscribe.failed"/></p>
+		</f:then>
+		<f:else>
+			<p><f:translate key="requestUnsubscribe"/></p>
+		</f:else>
+	</f:if>
 </f:section>
