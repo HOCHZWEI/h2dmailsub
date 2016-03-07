@@ -78,7 +78,7 @@ class NotificationService
         }
 
         // Send e-mail to recipient
-        $body = $this->getNotificationContent($address, $template);
+        $body = $this->getNotificationContent($address, $template, $settings);
         $this->emailService->sendEmailMessage($sender, $address->getEmail(), $subject, $body, $senderName);
     }
 
@@ -89,7 +89,7 @@ class NotificationService
      * @param string $template
      * @return string
      */
-    public function getNotificationContent($address, $template)
+    public function getNotificationContent($address, $template, $settings)
     {
         $standaloneView = $this->objectManager->get('TYPO3\\CMS\\Fluid\\View\\StandaloneView');
         $standaloneView->setFormat('html');
@@ -106,10 +106,8 @@ class NotificationService
         );
         $standaloneView->setTemplate($template);
         $standaloneView->assign('address', $address);
+        $standaloneView->assign('senderSignature', $settings['notification']['senderSignature']);
         $emailBody = $standaloneView->render();
         return $emailBody;
-
-        //@todo: variable RootPaths
-        //@todo: variable Template Files
     }
 }
