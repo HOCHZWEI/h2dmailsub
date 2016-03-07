@@ -32,5 +32,20 @@ plugin.tx_h2dmailsub {
 				unsubscribe = {$plugin.tx_h2dmailsub.settings.notification.adminSubject.unsubscribe}
 			}
 		}
+		validation {
+			email{
+				required = 1
+				email = 1
+			}
+			firstName{
+
+			}
+			lastName{
+
+			}
+			localgender{
+
+			}
+		}
 	}
 }

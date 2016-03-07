@@ -58,6 +58,10 @@
 			<trans-unit id="requestUnsubscribe.failed">
 				<source>Your Email address is not subscribed!</source>
 			</trans-unit>
+
+			<trans-unit id="validation.required">
+				<source>This Field must be filled!</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

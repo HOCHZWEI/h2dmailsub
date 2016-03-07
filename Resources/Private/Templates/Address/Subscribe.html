@@ -1,7 +1,6 @@
 <f:layout name="Default" />
 
 <f:section name="main">
-    <f:flashMessages />
    <f:form object="{address}" name="address" action="saveSubscription" class="subscribe-form">
        <fieldset>
            <div class="row">
@@ -21,6 +20,7 @@
             <div class="row">
                 <label for="email"><f:translate key="tx_h2dmailsub_domain_model_address.email" /></label>
                 <f:form.textfield id="email" property="email" value=""/>
+                <f:render partial="FormErrors" arguments="{field: 'address.email'}"/>
             </div>
            <f:form.submit value="{f:translate(key:'tx_h2dmailsub_domain_model_address.submit')}" class="submit"/>
        </fieldset>

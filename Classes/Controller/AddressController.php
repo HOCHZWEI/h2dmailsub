@@ -35,6 +35,14 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     protected $MessageType;
 
     /**
+     * SubscribeValidator
+     *
+     * @var \Hochzwei\H2dmailsub\Validation\SubscribeValidator
+     * @inject
+     */
+    protected $subscribeValidator;
+
+    /**
      * subscribe
      *
      * @return void
@@ -50,6 +58,7 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      * @todo Implement validator
      *
      * @param \Hochzwei\H2dmailsub\Domain\Model\Address $address
+     * @validate $address \Hochzwei\H2dmailsub\Validation\SubscribeValidator
      * @return void
      */
     public function saveSubscriptionAction(\Hochzwei\H2dmailsub\Domain\Model\Address $address)
