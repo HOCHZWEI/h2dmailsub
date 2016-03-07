@@ -39,6 +39,16 @@ class NotificationService
      */
     protected $emailService;
 
+
+    /**
+     * The configurationManager
+     *
+     * @var \TYPO3\CMS\Extbase\Configuration\ConfigurationManager
+     * @inject
+     */
+    protected $configurationManager;
+
+
     /**
      * @param array $settings
      * @param Address $address
@@ -71,7 +81,7 @@ class NotificationService
         $body = $this->getNotificationContent($address, $template);
         $this->emailService->sendEmailMessage($sender, $address->getEmail(), $subject, $body, $senderName);
     }
-    
+
     /**
      * Returns the rendered HTML for the given template
      *
@@ -83,14 +93,16 @@ class NotificationService
     {
         $standaloneView = $this->objectManager->get('TYPO3\\CMS\\Fluid\\View\\StandaloneView');
         $standaloneView->setFormat('html');
+        $frameworkConfiguration = $this->configurationManager->getConfiguration(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
+
         $standaloneView->setLayoutRootPaths(
-            [GeneralUtility::getFileAbsFileName('EXT:h2dmailsub/Resources/Private/Layouts')]
+            $frameworkConfiguration['view']['layoutRootPaths']
         );
         $standaloneView->setPartialRootPaths(
-            [GeneralUtility::getFileAbsFileName('EXT:h2dmailsub/Resources/Private/Partials')]
+            $frameworkConfiguration['view']['partialRootPaths']
         );
         $standaloneView->setTemplateRootPaths(
-            [GeneralUtility::getFileAbsFileName('EXT:h2dmailsub/Resources/Private/Templates')]
+            $frameworkConfiguration['view']['templateRootPaths']
         );
         $standaloneView->setTemplate($template);
         $standaloneView->assign('address', $address);
