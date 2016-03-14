@@ -6,16 +6,19 @@
            <div class="row">
                <label for="firstname"><f:translate key="tx_h2dmailsub_domain_model_address.firstname" /></label>
                <f:form.textfield id="firstname" property="firstName" value=""/>
+               <f:render partial="FormErrors" arguments="{field: 'address.firstName'}"/>
            </div>
            <div class="row">
                <label for="lastname"><f:translate key="tx_h2dmailsub_domain_model_address.lastname" /></label>
                <f:form.textfield id="lastname" property="lastName" value=""/>
+               <f:render partial="FormErrors" arguments="{field: 'address.lastName'}"/>
            </div>
            <div class="row">
                <label for="gender"><f:translate key="tx_h2dmailsub_domain_model_address.gender" /></label>
                <f:form.radio id="genderfemale" property="localgender" value="f"/><f:translate key="tx_h2dmailsub_domain_model_address.gender.female" />
                <f:form.radio id="gendermale" property="localgender" value="m"/><f:translate key="tx_h2dmailsub_domain_model_address.gender.male" />
                <f:form.radio id="gendernone" property="localgender" value="n"/><f:translate key="tx_h2dmailsub_domain_model_address.gender.none" />
+               <f:render partial="FormErrors" arguments="{field: 'address.localgender'}"/>
            </div>
             <div class="row">
                 <label for="email"><f:translate key="tx_h2dmailsub_domain_model_address.email" /></label>
