@@ -1,12 +1,6 @@
 <f:layout name="Default" />
 
 <f:section name="main">
-	<f:if condition="{knownEmail}">
-		<f:then>
-			<p><f:translate key="saveSubscription.failed"/> </p>
-		</f:then>
-		<f:else>
-			<p><f:translate key="saveSubscription"/> </p>
-		</f:else>
-	</f:if>
+	<h3><f:translate key="{titleKey}"/></h3>
+	<p><f:translate key="{messageKey}"/> </p>
 </f:section>

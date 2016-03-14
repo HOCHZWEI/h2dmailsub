@@ -37,26 +37,62 @@
 			<trans-unit id="confirmSubscription">
 				<source>Your Subscription to the Newsletter was successful.</source>
 			</trans-unit>
+			<trans-unit id="confirmSubscription.title">
+				<source>Subscription successful.</source>
+			</trans-unit>
 			<trans-unit id="confirmSubscription.failed">
 				<source>Your are already confirmed!</source>
+			</trans-unit>
+			<trans-unit id="confirmSubscription.failed.auth.title">
+				<source>Authentification failed</source>
+			</trans-unit>
+			<trans-unit id="confirmSubscription.failed.title">
+				<source>Error</source>
+			</trans-unit>
+			<trans-unit id="confirmSubscription.failed.auth">
+				<source>An error has occurred</source>
 			</trans-unit>
 			<trans-unit id="saveSubscription">
 				<source>A link was sent to your given email address.Please click the link to subscribe your address.</source>
 			</trans-unit>
+			<trans-unit id="saveSubscription.title">
+				<source>Subscribe your address.</source>
+			</trans-unit>
 			<trans-unit id="saveSubscription.failed">
 				<source>You are already subscribed to our Newsletter!</source>
+			</trans-unit>
+			<trans-unit id="saveSubscription.failed.title">
+				<source>Error</source>
 			</trans-unit>
 			<trans-unit id="removeSubscription">
 				<source>Your Address has been deleted!</source>
 			</trans-unit>
+			<trans-unit id="removeSubscription.title">
+				<source>Address deleted!</source>
+			</trans-unit>
 			<trans-unit id="removeSubscription.failed">
 				<source>You are already deleted!</source>
+			</trans-unit>
+			<trans-unit id="removeSubscription.failed.auth">
+				<source>An error has occurred</source>
+			</trans-unit>
+			<trans-unit id="removeSubscription.failed.title">
+				<source>Error</source>
+			</trans-unit>
+			<trans-unit id="removeSubscription.failed.auth.title">
+				<source>Authentification failed</source>
 			</trans-unit>
 			<trans-unit id="requestUnsubscribe">
 				<source>A link has been sent if address is known. Please click the link to unsubscribe your address.</source>
 			</trans-unit>
+			<trans-unit id="requestUnsubscribe.title">
+				<source>unsubscribe your address</source>
+			</trans-unit>
 			<trans-unit id="requestUnsubscribe.failed">
 				<source>Your Email address is not subscribed!</source>
+			</trans-unit>
+			<trans-unit id="requestUnsubscribe.failed.title">
+				<source>Error</source>
 			</trans-unit>
 
 			<trans-unit id="validation.required">

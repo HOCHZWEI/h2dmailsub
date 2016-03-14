@@ -65,10 +65,13 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     public function saveSubscriptionAction(\Hochzwei\H2dmailsub\Domain\Model\Address $address)
     {
         $email = $this->addressRepository->findAddressByEmail($address->getEmail());
+        $titleKey = 'saveSubscription.title';
+        $messageKey = 'saveSubscription';
+
         if ($email) {
-            $knownEmail = true;
+            $titleKey = 'saveSubscription.failed.title';
+            $messageKey = 'saveSubscription.failed';
         } else {
-            $knownEmail = false;
             $address->setHidden(true);
             $this->addressRepository->add($address);
             $persistenceManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager');
@@ -82,7 +85,10 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
                 $this->redirect('confirmSubscription', null, null, ['subscriptionUid' => $uid]);
             }
         }
-        $this->view->assign('knownEmail', $knownEmail);
+        $this->view->assignMultiple([
+            'titleKey' => $titleKey,
+            'messageKey' => $messageKey,
+        ]);
     }
 
     /**
@@ -94,37 +100,31 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      */
     public function confirmSubscriptionAction($subscriptionUid, $confirmationCode)
     {
-        $titleKey = 'confirm.title.confirmed';
-        $messageKey = 'confirm.message.confirmed';
+        $titleKey = 'confirmSubscription.title';
+        $messageKey = 'confirmSubscription';
 
-        // @todo THA: Security checks
         $confirmationCodeValid = $this->validateConfirmationCode($subscriptionUid, $confirmationCode);
         if ($confirmationCodeValid == false) {
-            print_r('false');
-            $already_confirmed = true;
-        }
-
-        /* @var $address \Hochzwei\H2dmailsub\Domain\Model\Address */
-        $address = $this->addressRepository->findAddressByUid($subscriptionUid);
-
-        if ($address->getHidden()) {
-            $address->setHidden(false);
-            $this->addressRepository->update($address);
-
-            $this->notificationService->sendNotification($address, MessageType::SUBSCRIPTION_CONFIRMED, $this->settings);
-            $this->notificationService->sendAdminNotification($address, MessageType::SUBSCRIPTION_CONFIRMED, $this->settings);
-
-            $already_confirmed = false;
+            $titleKey = 'confirmSubscription.failed.auth.title';
+            $messageKey = 'confirmSubscription.failed.auth';
         } else {
-            $titleKey = 'confirm.title.already_confirmed';
-            $messageKey = 'confirm.message.already_confirmed';
-            $already_confirmed = true;
-        }
+            /* @var $address \Hochzwei\H2dmailsub\Domain\Model\Address */
+            $address = $this->addressRepository->findAddressByUid($subscriptionUid);
 
+            if ($address->getHidden()) {
+                $address->setHidden(false);
+                $this->addressRepository->update($address);
+
+                $this->notificationService->sendNotification($address, MessageType::SUBSCRIPTION_CONFIRMED, $this->settings);
+                $this->notificationService->sendAdminNotification($address, MessageType::SUBSCRIPTION_CONFIRMED, $this->settings);
+            } else {
+                $titleKey = 'confirmSubscription.failed.title';
+                $messageKey = 'confirmSubscription.failed';
+            }
+        }
         $this->view->assignMultiple([
             'titleKey' => $titleKey,
             'messageKey' => $messageKey,
-            'already_confirmed' => $already_confirmed
         ]);
     }
 
@@ -145,15 +145,21 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      */
     public function requestUnsubscribeAction($email)
     {
+        $titleKey = 'requestUnsubscribe.title';
+        $messageKey = 'requestUnsubscribe';
+
         $address = $this->addressRepository->findAddressByEmail($email);
-        $confirmationCode = $this->generateConfirmationCode($address->getUid());
         if ($address) {
+            $confirmationCode = $this->generateConfirmationCode($address->getUid());
             $this->notificationService->sendNotification($address, MessageType::SUBSCRIPTION_UNSUBSCRIBE, $this->settings, $confirmationCode);
-            $unknownAddress = false;
         } else {
-            $unknownAddress = true;
+            $titleKey = 'requestUnsubscribe.failed.title';
+            $messageKey = 'requestUnsubscribe.failed';
         }
-        $this->view->assign('unknownAddress', $unknownAddress);
+        $this->view->assignMultiple([
+            'titleKey' => $titleKey,
+            'messageKey' => $messageKey,
+        ]);
     }
 
     /**
@@ -165,22 +171,28 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      */
     public function removeSubscriptionAction($subscriptionUid, $confirmationCode)
     {
+        $titleKey = 'removeSubscription.title';
+        $messageKey = 'removeSubscription';
+
         $confirmationCodeValid = $this->validateConfirmationCode($subscriptionUid, $confirmationCode);
         if ($confirmationCodeValid == false) {
-            print_r('false');
-            $deletedAddress = true;
-        }
-
-        /* @var $address \Hochzwei\H2dmailsub\Domain\Model\Address */
-        $address = $this->addressRepository->findAddressByUid($subscriptionUid);
-        if ($address) {
-            $this->addressRepository->remove($address);
-            $this->notificationService->sendAdminNotification($address, MessageType::SUBSCRIPTION_UNSUBSCRIBE, $this->settings);
-            $deletedAddress = false;
+            $titleKey = 'removeSubscription.failed.auth.title';
+            $messageKey = 'removeSubscription.failed.auth';
         } else {
-            $deletedAddress = true;
+            /* @var $address \Hochzwei\H2dmailsub\Domain\Model\Address */
+            $address = $this->addressRepository->findAddressByUid($subscriptionUid);
+            if ($address) {
+                $this->addressRepository->remove($address);
+                $this->notificationService->sendAdminNotification($address, MessageType::SUBSCRIPTION_UNSUBSCRIBE, $this->settings);
+            } else {
+                $titleKey = 'removeSubscription.failed.title';
+                $messageKey = 'removeSubscription.failed';
+            }
         }
-        $this->view->assign('deletedAddress', $deletedAddress);
+        $this->view->assignMultiple([
+            'titleKey' => $titleKey,
+            'messageKey' => $messageKey,
+        ]);
     }
 
 

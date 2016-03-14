@@ -1,12 +1,6 @@
 <f:layout name="Default" />
 
 <f:section name="main">
-    <f:if condition="{deletedAddress}">
-        <f:then>
-            <p><f:translate key="removeSubscription.failed"/></p>
-        </f:then>
-        <f:else>
-            <p><f:translate key="removeSubscription"/></p>
-        </f:else>
-    </f:if>
+    <h3><f:translate key="{titleKey}"/></h3>
+    <p><f:translate key="{messageKey}"/> </p>
 </f:section>
