@@ -1,6 +1,6 @@
 <p>Dear {address.firstName} {address.lastName}</p>
 <p>Click here to DELETE (!) your subscription:
-<f:uri.action action="removeSubscription" arguments="{subscriptionUid: address.uid}" absolute="TRUE" controller="Address" extensionName="h2dmailsub" pluginName="Pidmailsubscribe">delete</f:uri.action>
+<f:uri.action action="removeSubscription" arguments="{subscriptionUid: address.uid, confirmationCode:confirmationCode}" absolute="TRUE" controller="Address" extensionName="h2dmailsub" pluginName="Pidmailsubscribe">delete</f:uri.action>
 </p>
 
 <f:format.html>{senderSignature}</f:format.html>

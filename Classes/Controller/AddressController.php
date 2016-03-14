@@ -3,6 +3,7 @@ namespace Hochzwei\H2dmailsub\Controller;
 
 use Hochzwei\H2dmailsub\Utility\MessageType;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * AddressController
@@ -74,9 +75,9 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             $persistenceManager->persistAll();
             $uid = $address->getUid();
 
-            // @todo Send E-Mail with confirmation link if configured (should also contain a configurable validity and the UID of record)
+            $confirmationCode = $this->generateConfirmationCode($uid);
             if ($this->settings['doubleOptIn']) {
-                $this->notificationService->sendNotification($address, MessageType::SUBSCRIPTION_CONFIRM, $this->settings);
+                $this->notificationService->sendNotification($address, MessageType::SUBSCRIPTION_CONFIRM, $this->settings, $confirmationCode);
             } else {
                 $this->redirect('confirmSubscription', null, null, ['subscriptionUid' => $uid]);
             }
@@ -88,15 +89,20 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      * confirm a subscription
      *
      * @param int $subscriptionUid
+     * @param string $confirmationCode
      * @return void
      */
-    public function confirmSubscriptionAction($subscriptionUid)
+    public function confirmSubscriptionAction($subscriptionUid, $confirmationCode)
     {
         $titleKey = 'confirm.title.confirmed';
         $messageKey = 'confirm.message.confirmed';
 
         // @todo THA: Security checks
-
+        $confirmationCodeValid = $this->validateConfirmationCode($subscriptionUid, $confirmationCode);
+        if ($confirmationCodeValid == false) {
+            print_r('false');
+            $already_confirmed = true;
+        }
 
         /* @var $address \Hochzwei\H2dmailsub\Domain\Model\Address */
         $address = $this->addressRepository->findAddressByUid($subscriptionUid);
@@ -140,8 +146,9 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     public function requestUnsubscribeAction($email)
     {
         $address = $this->addressRepository->findAddressByEmail($email);
+        $confirmationCode = $this->generateConfirmationCode($address->getUid());
         if ($address) {
-            $this->notificationService->sendNotification($address, MessageType::SUBSCRIPTION_UNSUBSCRIBE, $this->settings);
+            $this->notificationService->sendNotification($address, MessageType::SUBSCRIPTION_UNSUBSCRIBE, $this->settings, $confirmationCode);
             $unknownAddress = false;
         } else {
             $unknownAddress = true;
@@ -153,11 +160,16 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
      * remove Address
      *
      * @param int $subscriptionUid
+     * @param string $confirmationCode
      * @return void
      */
-    public function removeSubscriptionAction($subscriptionUid)
+    public function removeSubscriptionAction($subscriptionUid, $confirmationCode)
     {
-        // @todo THA: Security checks
+        $confirmationCodeValid = $this->validateConfirmationCode($subscriptionUid, $confirmationCode);
+        if ($confirmationCodeValid == false) {
+            print_r('false');
+            $deletedAddress = true;
+        }
 
         /* @var $address \Hochzwei\H2dmailsub\Domain\Model\Address */
         $address = $this->addressRepository->findAddressByUid($subscriptionUid);
@@ -171,4 +183,24 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
         $this->view->assign('deletedAddress', $deletedAddress);
     }
 
+
+    /**
+     * @param integer $uid
+     * @return string
+     */
+    private function generateConfirmationCode($uid)
+    {
+        return GeneralUtility::stdAuthCode($uid);
+    }
+
+    /**
+     * @param integer $uid
+     * @param string $confirmationCode
+     * @return boolean
+     */
+    private function validateConfirmationCode($uid, $confirmationCode)
+    {
+        $confirmationCodeForUid = $this->generateConfirmationCode($uid);
+        return $confirmationCodeForUid === $confirmationCode;
+    }
 }

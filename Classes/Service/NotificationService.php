@@ -53,8 +53,9 @@ class NotificationService
      * @param array $settings
      * @param Address $address
      * @param int $messageType
+     * @param string $confirmationCode
      */
-    public function sendNotification($address, $messageType, $settings)
+    public function sendNotification($address, $messageType, $settings, $confirmationCode = null)
     {
         $sender = $settings['notification']['senderEmail'];
         $senderName = $settings['notification']['senderName'];
@@ -78,7 +79,7 @@ class NotificationService
         }
 
         // Send e-mail to recipient
-        $body = $this->getNotificationContent($address, $template, $settings);
+        $body = $this->getNotificationContent($address, $template, $settings, $confirmationCode);
         $this->emailService->sendEmailMessage($sender, $address->getEmail(), $subject, $body, $senderName);
     }
 
@@ -118,9 +119,10 @@ class NotificationService
      * @param Address $address
      * @param string $template
      * @param array $settings
+     * @param string $confirmationCode
      * @return string
      */
-    public function getNotificationContent($address, $template, $settings)
+    public function getNotificationContent($address, $template, $settings, $confirmationCode = null)
     {
         $standaloneView = $this->objectManager->get('TYPO3\\CMS\\Fluid\\View\\StandaloneView');
         $standaloneView->setFormat('html');
@@ -138,6 +140,7 @@ class NotificationService
         $standaloneView->setTemplate($template);
         $standaloneView->assign('address', $address);
         $standaloneView->assign('senderSignature', $settings['notification']['senderSignature']);
+        $standaloneView->assign('confirmationCode', $confirmationCode);
         $emailBody = $standaloneView->render();
         return $emailBody;
     }
