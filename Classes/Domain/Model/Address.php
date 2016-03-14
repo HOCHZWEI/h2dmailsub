@@ -46,6 +46,11 @@ class Address extends \TYPO3\TtAddress\Domain\Model\Address
      * @var string
      */
     protected $localgender = '';
+
+    /**
+     * @var boolean
+     */
+    protected $receiveHtml = true;
     
     /**
      * Returns the localgender
@@ -88,4 +93,19 @@ class Address extends \TYPO3\TtAddress\Domain\Model\Address
         $this->hidden = $hidden;
     }
 
+    /**
+     * @return boolean
+     */
+    public function getReceiveHtml()
+    {
+        return (boolean)$this->receiveHtml;
+    }
+    /**
+     * @param boolean $receiveHtml
+     * @return void
+     */
+    public function setReceiveHtml($receiveHtml)
+    {
+        $this->receiveHtml = (boolean)$receiveHtml;
+    }
 }

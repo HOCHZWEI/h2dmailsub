@@ -13,6 +13,9 @@ config.tx_extbase{
                 mapping {
                     tableName = tt_address
                     recordType = Tx_H2dmailsub_Address
+                    columns {
+                        module_sys_dmail_html.mapOnProperty = receiveHtml
+                    }
                 }
             }
             
