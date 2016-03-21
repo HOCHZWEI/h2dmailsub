@@ -28,7 +28,7 @@
 				<source>Male</source>
 			</trans-unit>
 			<trans-unit id="tx_h2dmailsub_domain_model_address.gender.none">
-				<source>None</source>
+				<source>Others</source>
 			</trans-unit>
 			<trans-unit id="tx_h2dmailsub_domain_model_address.submit">
 				<source>Send</source>
