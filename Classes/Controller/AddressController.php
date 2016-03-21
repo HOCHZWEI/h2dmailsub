@@ -56,7 +56,6 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
     /**
      * Saves a new subscription
      *
-     * @todo Implement validator
      *
      * @param \Hochzwei\H2dmailsub\Domain\Model\Address $address
      * @validate $address \Hochzwei\H2dmailsub\Validation\SubscribeValidator
@@ -82,7 +81,7 @@ class AddressController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
             if ($this->settings['doubleOptIn']) {
                 $this->notificationService->sendNotification($address, MessageType::SUBSCRIPTION_CONFIRM, $this->settings, $confirmationCode);
             } else {
-                $this->redirect('confirmSubscription', null, null, ['subscriptionUid' => $uid]);
+                $this->redirect('confirmSubscription', null, null, ['subscriptionUid' => $uid, 'confirmationCode' => $confirmationCode]);
             }
         }
         $this->view->assignMultiple([
