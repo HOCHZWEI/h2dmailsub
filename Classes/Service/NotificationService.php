@@ -95,7 +95,6 @@ class NotificationService
             $message->setBody($plainBody, 'text/plain');
         }
         $message->send();
-        //$this->emailService->sendEmailMessage($sender, $address->getEmail(), $subject, $body, $senderName);
     }
 
     /**

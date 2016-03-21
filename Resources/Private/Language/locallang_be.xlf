@@ -24,6 +24,9 @@
 			<trans-unit id="flexform.notification.adminsubject.unsubscribe">
 				<source>Unsubscribe Subject to Admin</source>
 			</trans-unit>
+			<trans-unit id="flexform.viewLink">
+				<source>Show Link to unsubscribe</source>
+			</trans-unit>
 			<trans-unit id="flexform.view">
 				<source>Select View</source>
 			</trans-unit>

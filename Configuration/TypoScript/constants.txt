@@ -45,5 +45,7 @@ plugin.tx_h2dmailsub {
 				unsubscribe =
 			}
 		}
+		# cat=plugin.tx_h2dmailsub//a; type=boolean; label=View unsubscribe link (only in combined view)
+		viewLink =
 	}
 }
