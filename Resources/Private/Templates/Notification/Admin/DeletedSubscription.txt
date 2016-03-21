@@ -1,0 +1,3 @@
+Hello Admin,
+
+The User {address.firstName} {address.lastName} has been deleted!
