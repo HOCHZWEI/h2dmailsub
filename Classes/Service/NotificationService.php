@@ -17,6 +17,7 @@ namespace Hochzwei\H2dmailsub\Service;
 use Hochzwei\H2dmailsub\Domain\Model\Address;
 use Hochzwei\H2dmailsub\Utility\MessageType;
 use \TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Mail\MailMessage;
 
 /**
  * NotificationService
@@ -79,8 +80,22 @@ class NotificationService
         }
 
         // Send e-mail to recipient
-        $body = $this->getNotificationContent($address, $template, $settings, $confirmationCode);
-        $this->emailService->sendEmailMessage($sender, $address->getEmail(), $subject, $body, $senderName);
+        $htmlBody = $this->getNotificationContent($address, $template, $settings, $confirmationCode, 'html');
+        $plainBody = $this->getNotificationContent($address, $template, $settings, $confirmationCode, 'txt');
+        /** @var MailMessage $message */
+        $message = GeneralUtility::makeInstance(MailMessage::class);
+        $message->setTo($address->getEmail())
+            ->setFrom([$sender => $senderName])
+            ->setSubject($subject)
+            ->setCharset('utf-8');
+        if ($address->getReceiveHtml()) {
+            $message->setBody($htmlBody, 'text/html');
+            $message->addPart($plainBody, 'text/plain');
+        } else {
+            $message->setBody($plainBody, 'text/plain');
+        }
+        $message->send();
+        //$this->emailService->sendEmailMessage($sender, $address->getEmail(), $subject, $body, $senderName);
     }
 
     /**
@@ -109,8 +124,19 @@ class NotificationService
         }
 
         // Send e-mail to admin
-        $body = $this->getNotificationContent($address, $template, $settings);
-        $this->emailService->sendEmailMessage($sender, $adminemail, $subject, $body, $senderName);
+        $htmlBody = $this->getNotificationContent($address, $template, $settings, null, 'html');
+        $plainBody = $this->getNotificationContent($address, $template, $settings, null, 'txt');
+        /** @var MailMessage $message */
+        $message = GeneralUtility::makeInstance(MailMessage::class);
+        $message->setTo($adminemail)
+            ->setFrom([$sender => $senderName])
+            ->setSubject($subject)
+            ->setCharset('utf-8');
+
+        $message->setBody($htmlBody, 'text/html');
+        $message->addPart($plainBody, 'text/plain');
+
+        $message->send();
     }
 
     /**
@@ -120,12 +146,14 @@ class NotificationService
      * @param string $template
      * @param array $settings
      * @param string $confirmationCode
+     * @param string $format
      * @return string
      */
-    public function getNotificationContent($address, $template, $settings, $confirmationCode = null)
+    public function getNotificationContent($address, $template, $settings, $confirmationCode = null, $format)
     {
         $standaloneView = $this->objectManager->get('TYPO3\\CMS\\Fluid\\View\\StandaloneView');
-        $standaloneView->setFormat('html');
+        $standaloneView->setFormat($format);
+
         $frameworkConfiguration = $this->configurationManager->getConfiguration(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
 
         $standaloneView->setLayoutRootPaths(

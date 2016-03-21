@@ -1,0 +1,5 @@
+Dear {address.firstName} {address.lastName}
+You have successfully confirmed your subscription.
+
+<f:format.stripTags>{senderSignature}</f:format.stripTags>
+

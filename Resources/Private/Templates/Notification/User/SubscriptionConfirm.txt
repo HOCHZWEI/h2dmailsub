@@ -1,0 +1,10 @@
+Dear {address.firstName} {address.lastName}
+Please confirm your subscription to the Newsletter.
+
+Before your subscriptions is fully enabled, you must click this link:
+<f:uri.action action="confirmSubscription" arguments="{subscriptionUid: address.uid, confirmationCode:confirmationCode}" absolute="TRUE" controller="Address" extensionName="h2dmailsub" pluginName="Pidmailsubscribe">confirm</f:uri.action>
+
+Thank you!
+
+<f:format.stripTags>{senderSignature}</f:format.stripTags>
+
