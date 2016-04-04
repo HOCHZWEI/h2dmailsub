@@ -1,4 +1,3 @@
-{namespace flux=FluidTYPO3\Flux\ViewHelpers}
 <f:layout name="Default" />
 
 <f:section name="main">
@@ -30,6 +29,6 @@
        </fieldset>
    </f:form>
     <f:if condition="{settings.viewLink}">
-        <f:link.action action="unsubscribe">unsubscribe</f:link.action>
+        <f:link.action action="unsubscribe"><f:translate key="tx_h2dmailsub_domain_model_address.unsubscribe" /></f:link.action>
     </f:if>
 </f:section>

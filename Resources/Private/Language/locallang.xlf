@@ -33,6 +33,9 @@
 			<trans-unit id="tx_h2dmailsub_domain_model_address.submit">
 				<source>Send</source>
 			</trans-unit>
+			<trans-unit id="tx_h2dmailsub_domain_model_address.unsubscribe">
+				<source>unsubscribe</source>
+			</trans-unit>
 
 			<trans-unit id="confirmSubscription">
 				<source>Your Subscription to the Newsletter was successful.</source>
