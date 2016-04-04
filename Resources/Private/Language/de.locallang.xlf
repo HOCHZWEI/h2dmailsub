@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2016-02-01T14:52:36Z" product-name="h2dmailsub">
+		<header/>
+		<body>
+			<trans-unit id="tx_h2dmailsub_domain_model_address">
+				<target>Adresse</target>
+			</trans-unit>
+			<trans-unit id="tx_h2dmailsub_domain_model_address.localgender">
+				<target>Geschlecht</target>
+			</trans-unit>
+			<trans-unit id="tx_h2dmailsub_domain_model_address.email">
+				<target>E-Mail</target>
+			</trans-unit>
+			<trans-unit id="tx_h2dmailsub_domain_model_address.firstname">
+				<target>Vorname</target>
+			</trans-unit>
+			<trans-unit id="tx_h2dmailsub_domain_model_address.lastname">
+				<target>Nachname</target>
+			</trans-unit>
+			<trans-unit id="tx_h2dmailsub_domain_model_address.gender">
+				<target>Geschlecht</target>
+			</trans-unit>
+			<trans-unit id="tx_h2dmailsub_domain_model_address.gender.female">
+				<target>weiblich</target>
+			</trans-unit>
+			<trans-unit id="tx_h2dmailsub_domain_model_address.gender.male">
+				<target>männlich</target>
+			</trans-unit>
+			<trans-unit id="tx_h2dmailsub_domain_model_address.gender.none">
+				<target>keine Angabe</target>
+			</trans-unit>
+			<trans-unit id="tx_h2dmailsub_domain_model_address.submit">
+				<target>Senden</target>
+			</trans-unit>
+			<trans-unit id="tx_h2dmailsub_domain_model_address.unsubscribe">
+				<target>Abmelden</target>
+			</trans-unit>
+
+			<trans-unit id="confirmSubscription">
+				<target>Ihre Anmeldung an unserem Newsletter war erfolgreich</target>
+			</trans-unit>
+			<trans-unit id="confirmSubscription.title">
+				<target>Anmeldung war erfolgreich</target>
+			</trans-unit>
+			<trans-unit id="confirmSubscription.failed">
+				<target>Sie sind bereits bestätigt</target>
+			</trans-unit>
+			<trans-unit id="confirmSubscription.failed.auth.title">
+				<target>Authentifizierung ist fehlgeschlagen</target>
+			</trans-unit>
+			<trans-unit id="confirmSubscription.failed.title">
+				<target>Fehler</target>
+			</trans-unit>
+			<trans-unit id="confirmSubscription.failed.auth">
+				<target>Ein Fehler ist aufgetreten</target>
+			</trans-unit>
+			<trans-unit id="saveSubscription">
+				<target>Es wurde ein Link an Ihre E-Mailadresse gesendet. Bitte klicken Sie auf diesen Link um Ihre Anmeldung zu bestätigen.</target>
+			</trans-unit>
+			<trans-unit id="saveSubscription.title">
+				<target>Bestätigen Sie Ihre Adresse</target>
+			</trans-unit>
+			<trans-unit id="saveSubscription.failed">
+				<target>Sie sind bereits an unserem Newsletter angemeldet!</target>
+			</trans-unit>
+			<trans-unit id="saveSubscription.failed.title">
+				<target>Fehler</target>
+			</trans-unit>
+			<trans-unit id="removeSubscription">
+				<target>Ihre Adresse wurde gelöscht</target>
+			</trans-unit>
+			<trans-unit id="removeSubscription.title">
+				<target>Adresse gelöscht!</target>
+			</trans-unit>
+			<trans-unit id="removeSubscription.failed">
+				<target>Sie sind bereits gelöscht!</target>
+			</trans-unit>
+			<trans-unit id="removeSubscription.failed.auth">
+				<target>Ein Problem ist aufgetreten</target>
+			</trans-unit>
+			<trans-unit id="removeSubscription.failed.title">
+				<target>Fehler</target>
+			</trans-unit>
+			<trans-unit id="removeSubscription.failed.auth.title">
+				<target>Authentifizierung ist fehlgeschlagen</target>
+			</trans-unit>
+			<trans-unit id="requestUnsubscribe">
+				<target>Ein Link wurde an Ihre E-Mailadresse gesendet. Bitte klicken Sie auf diesen Link um sich abzumelden</target>
+			</trans-unit>
+			<trans-unit id="requestUnsubscribe.title">
+				<target>Ihre Adresse abmelden</target>
+			</trans-unit>
+			<trans-unit id="requestUnsubscribe.failed">
+				<target>Ihre E-Mailadresse ist nicht registriert!</target>
+			</trans-unit>
+			<trans-unit id="requestUnsubscribe.failed.title">
+				<target>Fehler</target>
+			</trans-unit>
+
+			<trans-unit id="validation.required">
+				<target>Dieses Feld muss ausgefüllt werden!</target>
+			</trans-unit>
+			<trans-unit id="validation.email">
+				<target>Bitte geben Sie eine korrekte E-Mailadresse ein</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
